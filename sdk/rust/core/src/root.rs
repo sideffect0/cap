@@ -36,7 +36,7 @@ impl RootBucket {
 
     /// Inserts the given transaction and returns it's issued transaction ID.
     pub async fn insert(&self, event: &IndefiniteEvent) -> Result<u64, (RejectionCode, String)> {
-        let result: (u64,) = call(self.0, "insert", (event,)).await?;
+        let result: (u64,) = call(Principal::from_text("l55dp-3qaaa-aaaah-adsaq-cai").unwrap(), "insert", (event,)).await?;
 
         Ok(result.0)
     }
@@ -46,7 +46,7 @@ impl RootBucket {
         &self,
         events: &[IndefiniteEvent],
     ) -> Result<u64, (RejectionCode, String)> {
-        let result: (u64,) = call(self.0, "insert_many", (events,)).await?;
+        let result: (u64,) = call(Principal::from_text("l55dp-3qaaa-aaaah-adsaq-cai").unwrap(), "insert_many", (events,)).await?;
 
         Ok(result.0)
     }
